@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main id="swup" class="uk-position-cover uk-light uk-background-secondary">
+        <div class="uk-position-center">
+            <div class="uk-tile uk-tile-secondary">
+                <div class="uk-text-lead">
+                    {{ 'what_is_backseat' | trans }} ?
+                </div>
+                <p>
+                    {{ 'backseat_definition' | trans }} ?
+                </p>
+                <blockquote cite="you">
+                    {{ 'backseat_quote' | trans }}
+                </blockquote>
+                <div>
+                    <a class="uk-button uk-button-default uk-button-small"
+                       href="{{ path('i_did_not') }}">
+                        {{ 'was_not_backseat' | trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

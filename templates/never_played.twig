@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main id="swup" class="uk-position-cover uk-light uk-background-secondary">
+        <div class="uk-position-center">
+            <div class="uk-tile uk-tile-secondary">
+                <div class="uk-text-lead">
+                    {{ 'not_spoiling' | trans }}
+                </div>
+                <p>
+                    {{ 'not_spoiling.paragraph_1' | trans }}
+                </p>
+                <p>
+                    {{ 'not_spoiling.paragraph_2' | trans }}
+                </p>
+                <div>
+                    <a class="uk-button uk-button-default uk-button-small"
+                       href="{{ path('but_the_caster_asked') }}">
+                        {{ 'caster_asked' | trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
