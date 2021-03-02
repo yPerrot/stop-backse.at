@@ -10,8 +10,9 @@ class RootController extends AbstractController
 {
     public function root(Request $request): RedirectResponse
     {
+        dump($request->getLocale());
         return $this->redirectToRoute('home', [
-            '_locale' => $request->getLocale() == 'fr' ? 'fr' : 'en'
+            '_locale' => ($request->getLocale() === 'fr' ? 'fr' : 'en')
         ]);
     }
 }
