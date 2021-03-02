@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stopbackseat-app
+  labels:
+    app: stopbackseat
+    service: fpm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stopbackseat
+      service: fpm
+  template:
+    metadata:
+      labels:
+        app: stopbackseat
+        service: fpm
+    spec:
+      imagePullSecrets:
+        - name: registry-cred
+      containers:
+        - name: fpm
+          image: registry.jevil.emi.cool/stopbackseat:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 9000
+          envFrom:
+          - configMapRef:
+              name: stopbackseat-app-env
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fpm
+spec:
+  ports:
+    - name: fpm
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    app: stopbackseat
+    service: fpm
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stopbackseat-nginx
+  labels:
+    app: stopbackseat
+    service: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stopbackseat
+      service: web
+  template:
+    metadata:
+      labels:
+        app: stopbackseat
+        service: web
+    spec:
+      imagePullSecrets:
+        - name: registry-cred
+      volumes:
+        - name: stopbackseat-nginx-public
+          emptyDir: {}
+      initContainers:
+        - name: stopbackseat-app-init
+          image: registry.jevil.emi.cool/stopbackseat:latest
+          imagePullPolicy: "Always"
+          volumeMounts:
+            - mountPath: /volume
+              name: stopbackseat-nginx-public
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - "cp --verbose -a /srv/app/public/. /volume"
+      containers:
+        - name: nginx
+          image: registry.jevil.emi.cool/symfony-nginx:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /srv/app/public
+              name: stopbackseat-nginx-public
+          ports:
+            - containerPort: 80
+          env:
+          - name: PHP_FPM_SERVER
+            value: 'fpm.stopbackseat.svc.cluster.local:9000'
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: stopbackseat
+    service: web
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: stopbackseat-web
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`stop-backse.at`)
+      kind: Rule
+      services:
+        - name: nginx
+          port: 80
+  tls:
+    certResolver: myresolver
