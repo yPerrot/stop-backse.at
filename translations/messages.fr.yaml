@@ -1,11 +1,12 @@
-stop_backseat: stop backseat
-please: s'il vous plaît
-what_is_backseat: qu'est-ce que le backseat
-was_not_backseat: ce n'était pas du backseat, je n'ai jamais joué au jeu
-backseat_definition: comme un passager en voiture, un backseater sur un stream est quelqu'un qui dicte ce que le streamer doit ou ne doit pas faire
+stop_backseat: Stop backseat
+please: svp
+what_is_backseat: Qu'est-ce que le backseat
+was_not_backseat: Ce n'était pas du backseat, je n'ai jamais joué au jeu
+backseat_definition: Le Backseat, c'est participer à la réflexion ou la progression de quelqu'un en ayant les mêmes informations.
 backseat_quote: "<xFORTNITExKILLERx> : va dans ce batiment boloss"
-not_spoiling: backseater n'est pas spoiler
-not_spoiling.paragraph_1: spoiler c'est révéler des informations à quelqu'un qui n'en n'a pas connaissance
-not_spoiling.paragraph_2: backseater c'est participer au processus de réfléxion de quelqu'un en ayant les mêmes informations
-caster_asked: mais le streamer a demandé
-caster_asked.paragraph_1: ce ne sont pas des questions qui sont directement adressées
+not_spoiling: Backseater n'est pas spoiler
+not_spoiling.paragraph_1: Spoiler c'est révéler des informations à quelqu'un qui n'en n'a pas connaissance
+not_spoiling.paragraph_2: Backseater c'est participer au processus de réfléxion de quelqu'un en ayant les mêmes informations
+caster_asked: Mais le streamer a demandé
+caster_asked.paragraph_1: Ce ne sont pas des questions qui sont directement adressées au chat.
+caster_asked.paragraph_2: Le streameur partage son processus de réflexion afin de vous communiquer ce qu'il pense avoir compris et ce qui le travaille.
