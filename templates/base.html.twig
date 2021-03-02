@@ -17,6 +17,9 @@
 <body class="uk-height-1-1"
       data-controller="myswup symfony--ux-swup--swup"
       data-animate-history-browsing="data-animate-history-browsing">
-{% block body %}{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}
 </body>
 </html>

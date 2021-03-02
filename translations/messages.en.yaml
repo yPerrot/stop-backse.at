@@ -10,3 +10,6 @@ not_spoiling.paragraph_2: Backseat is participating in someone's thinking or pro
 caster_asked: But the caster asked
 caster_asked.paragraph_1: These are not questions that are directly addressed to the chat.
 caster_asked.paragraph_2: The streamer shares his thought process in order to communicate to you what he's thinking.
+
+text_inspired: Text inspired by %author%'s tweets
+dev_host: Made and hosted by %dev%
