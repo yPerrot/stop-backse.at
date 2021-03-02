@@ -1,11 +1,12 @@
-stop_backseat: stop backseat
-please: please
+stop_backseat: Stop backseat
+please: Please
 what_is_backseat: What is backseat
-was_not_backseat: that was not backseat, i never played that game
+was_not_backseat: That was not backseat, i never played that game
 backseat_definition: Like a backseat driver, a backseat gamer is a person who tells you what to do in a game that you're playing while you're playing it.
 backseat_quote: "<xFORTNITExKILLERx> : go inside that building dummy"
 not_spoiling: Backseating is not spoiling
 not_spoiling.paragraph_1: Spoiling is revealing informations you know to someone who does not.
 not_spoiling.paragraph_2: Backseat is participating in someone's thinking or progress by having the same information.
 caster_asked: But the caster asked
-caster_asked.paragraph_1: These are not questions that are directly addressed to the chat. The streamer shares his thought process in order to communicate to you what he's thinking.
+caster_asked.paragraph_1: These are not questions that are directly addressed to the chat.
+caster_asked.paragraph_2: The streamer shares his thought process in order to communicate to you what he's thinking.
