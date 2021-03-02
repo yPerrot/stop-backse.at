@@ -1,3 +1,36 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+root:
+  path: /
+  controller: App\Controller\RootController:root
+
+home:
+  path: /{_locale}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: home.html.twig
+  requirements:
+    _locale: en|fr
+
+what_is_backseat:
+  path: /{_locale}/what
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: what_is_backseat.html.twig
+  requirements:
+    _locale: en|fr
+
+i_did_not:
+  path: /{_locale}/i-did-not
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: never_played.twig
+  requirements:
+    _locale: en|fr
+
+but_the_caster_asked:
+  path: /{_locale}/but-the-caster-asked
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: but_the_caster_asked.twig
+  requirements:
+    _locale: en|fr
+
