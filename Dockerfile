@@ -51,10 +51,11 @@ RUN set -eux; \
 ARG APP_ENV=prod
 
 # prevent the reinstallation of vendors at every changes in the source code
-COPY --chown=webuser:webgroup composer.json composer.lock symfony.lock ./
+COPY --chown=webuser:webgroup composer.json composer.lock symfony.lock package.json yarn.lock ./
 
 RUN composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
-	composer clear-cache
+	composer clear-cache; \
+	yarn install
 
 # Handle file to exclude with a .dockerignore
 COPY --chown=webuser:webgroup . .
@@ -63,6 +64,7 @@ RUN set -eu; \
     mkdir -p var/cache var/log; \
 	composer dump-autoload --classmap-authoritative --no-dev; \
 	composer run-script --no-dev post-install-cmd; \
+	yarn build; \
 	chown -R webuser:webgroup var; \
 	chmod +x bin/console; \
 	sync
