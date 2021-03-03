@@ -6,12 +6,14 @@ use App\Entity\User;
 use Depotwarehouse\OAuth2\Client\Twitch\Entity\TwitchUser;
 use Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch;
 use Doctrine\ORM\EntityManagerInterface;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
@@ -81,12 +83,16 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
         ] : null;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): User
     {
 
-        $token = $this->provider->getAccessToken("authorization_code", [
-            'code' => $credentials['code']
-        ]);
+        try {
+            $token = $this->provider->getAccessToken("authorization_code", [
+                'code' => $credentials['code']
+            ]);
+        } catch (IdentityProviderException $e) {
+            throw new BadCredentialsException($e->getMessage(), $e->getCode(), $e);
+        }
 
         /** @var TwitchUser $twitchUser */
         $twitchUser = $this->provider->getResourceOwner($token);
@@ -122,8 +128,7 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
-        throw new NotFoundHttpException('raté');
-        return new RedirectResponse($this->router->generate('home'));
+        return new RedirectResponse($this->router->generate('but_the_caster_asked'));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
@@ -133,15 +138,15 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('home'));
+        return new RedirectResponse($this->router->generate('but_the_caster_asked'));
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
-        return new RedirectResponse($this->provider->getAuthorizationUrl(['force_verify' => 'true']));
+        return new RedirectResponse($this->provider->getAuthorizationUrl());
     }
 
-    public function supportsRememberMe()
+    public function supportsRememberMe(): bool
     {
         return true;
     }
