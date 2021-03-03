@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <main id="swup" class="uk-position-cover uk-light uk-background-secondary">
+        <div class="uk-position-center uk-text-center">
+            <div class="uk-tile uk-tile-secondary">
+                <div class="uk-text-lead">
+                    {{ 'thank_you' | trans({'%user%' : user_name}) }}
+                </div>
+            </div>
+            {% if  last_users is not empty %}
+                <div class="uk-text-meta">
+                    {{ 'also_thanks' | trans }}:
+                </div>
+                <br/>
+                <div>
+                    <ul class="uk-list">
+                        {% for user in last_users %}
+                            <li>
+                                <a href="https://twitch.tv/{{ user.username }}" target="_blank">
+                                    {{ user.displayedUsername }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <div>
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                   class="twitter-share-button"
+                   data-size="large"
+                   data-text="{{ 'tweet_text' | trans }}"
+                   data-url="https://stop-backse.at/"
+                   data-related="emilweth"
+                   data-dnt="true"
+                   data-show-count="false">Tweet</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endblock %}

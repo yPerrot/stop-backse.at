@@ -1,8 +1,8 @@
 stop_backseat: Stop backseat
 please: svp
 what_is_backseat: Qu'est-ce que le backseat
-was_not_backseat: Ce n'était pas du backseat, je n'ai jamais joué au jeu
-backseat_definition: Le Backseat, c'est participer à la réflexion ou la progression de quelqu'un en ayant les mêmes informations.
+was_not_backseat: Mais ce n'était pas du backseat, je n'ai jamais joué au jeu !
+backseat_definition: Un backseater, c'est quelqu'un qui vous dit quoi faire en jeu pendant que vous y jouez.
 backseat_quote: "<xFORTNITExKILLERx> : va dans ce batiment boloss"
 not_spoiling: Backseater n'est pas spoiler
 not_spoiling.paragraph_1: Spoiler c'est révéler des informations à quelqu'un qui n'en n'a pas connaissance
@@ -10,6 +10,12 @@ not_spoiling.paragraph_2: Backseater c'est participer au processus de réfléxio
 caster_asked: Mais le streamer a demandé
 caster_asked.paragraph_1: Ce ne sont pas des questions qui sont directement adressées au chat.
 caster_asked.paragraph_2: Le streameur partage son processus de réflexion afin de vous communiquer ce qu'il pense avoir compris et ce qui le travaille.
+
+do_you_understand: Tu as compris et tu ne backseatera plus ?
+i_understand: oui promis
+thank_you: merci %user%
+also_thanks: merci également à
+tweet_text: promis, j'arrête de backseat
 
 text_inspired: Texte inspiré des tweets de %author%
 dev_host: Développé & Hébergé par %dev%
