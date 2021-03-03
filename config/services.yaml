@@ -27,5 +27,20 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+    TwitchApi\TwitchApi:
+        arguments:
+            - { client_id: "%env(TWITCH_CLIENT_ID)%" }
+
+    Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch:
+        arguments:
+            - clientId: "%env(TWITCH_CLIENT_ID)%"
+              clientSecret: "%env(TWITCH_CLIENT_SECRET)%"
+              redirectUri: "%env(TWITCH_REDIRECT_URI)%"
+
+    App\Service\TwitchAuthenticationService:
+        calls:
+            - [ setCredentials, [ "%env(TWITCH_CLIENT_ID)%", "%env(TWITCH_CLIENT_SECRET)%" ] ]
+            - [ setRedirectUrl, [ "%env(TWITCH_REDIRECT_URI)%" ] ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

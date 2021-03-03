@@ -34,3 +34,14 @@ but_the_caster_asked:
   requirements:
     _locale: en|fr
 
+i_understand:
+  path: /{_locale}/i-understand
+  controller: App\Controller\IUnderstandController:index
+  requirements:
+    _locale: en|fr
+
+twitch_redirect:
+  path: /twitch_redirect
+
+logout:
+  path: /logout
