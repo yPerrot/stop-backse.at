@@ -14,6 +14,7 @@ caster_asked.paragraph_1: These are not questions that are directly addressed to
 caster_asked.paragraph_2: The streamer shares his thought process in order to communicate to you what they're thinking.
 
 do_you_understand: Do you understand and promise you'll never backseat again?
+require_twitch_login: Requires a twitch login to get you nickname
 i_understand: yes I swear
 thank_you: thank you %user%
 also_thanks: also thanks

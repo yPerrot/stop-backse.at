@@ -14,15 +14,18 @@
                 </p>
             </div>
             <div class="uk-tile uk-tile-secondary">
-                    <p>
-                        {{ 'do_you_understand' | trans }}
-                    </p>
-                    <a class="uk-button uk-button-default uk-button-small"
-                       href="{{ path('i_understand') }}">
-                        {{ 'i_understand' | trans }}
-                    </a>
-                </div>
+                <p>
+                    {{ 'do_you_understand' | trans }} <br/>
+                    <em class="uk-text-meta">
+                        {{ 'require_twitch_login' | trans }}
+                    </em>
+                </p>
+                <a class="uk-button uk-button-default uk-button-small"
+                   href="{{ path('i_understand') }}">
+                    {{ 'i_understand' | trans }}
+                </a>
             </div>
+        </div>
         </div>
     </main>
 {% endblock %}

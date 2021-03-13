@@ -14,6 +14,7 @@ caster_asked.paragraph_1: Ce ne sont pas des questions qui sont directement adre
 caster_asked.paragraph_2: Le streameur partage son processus de réflexion afin de vous communiquer ce qu'il pense avoir compris et ce qui le travaille.
 
 do_you_understand: Tu as compris et tu ne backseatera plus ?
+require_twitch_login: Requiert une connexion à twitch pour récupérer votre pseudo
 i_understand: oui promis
 thank_you: merci %user%
 also_thanks: merci également à
