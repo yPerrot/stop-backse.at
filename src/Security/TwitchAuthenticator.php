@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -110,7 +109,6 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
             ->setTwitchId($twitchUser->getId())
             ->setUsername($twitchUser->getUsername())
             ->setDisplayedUsername($twitchUser->getDisplayName())
-            ->setEmail($twitchUser->getEmail())
             ->setAvatar($twitchUser->getLogo())
             ->setTwitchToken($token);
 
@@ -143,7 +141,10 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
-        return new RedirectResponse($this->provider->getAuthorizationUrl());
+        $this->provider->scopes = '';
+        return new RedirectResponse($this->provider->getAuthorizationUrl([
+            'force_verify' => 'true'
+        ]));
     }
 
     public function supportsRememberMe(): bool
