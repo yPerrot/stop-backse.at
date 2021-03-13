@@ -80,7 +80,6 @@ class TwitchUserService
             'twitchId' => $twitchUser['id'],
             'twitchLogin' => $twitchUser['login'],
             'twitchDisplayname' => $twitchUser['display_name'],
-            'twitchEmail' => $twitchUser['email'],
             'twitchProfileUrl' => $twitchUser['profile_image_url']
         ];
 

@@ -4,6 +4,7 @@
 namespace App\Service;
 
 use Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch;
+use Exception;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -80,11 +81,10 @@ class TwitchAuthenticationService
     }
 
     /**
-     * @param array $additionalScope
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
-    public function authorizeUrl(array $additionalScope = [])
+    public function authorizeUrl(): string
     {
         $this->sessionInterface->set('loginToken', md5(random_int(PHP_INT_MIN, PHP_INT_MAX)));
 
@@ -92,7 +92,6 @@ class TwitchAuthenticationService
             "client_id" => $this->clientId,
             "redirect_uri" => $this->redirectUrl,
             "response_type" => 'code',
-            "scope" => "user:read:email" . implode(" ", $additionalScope),
             "force_verify" => 'true',
             "state" => $this->sessionInterface->get('loginToken')
         ]);

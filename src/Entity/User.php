@@ -45,10 +45,6 @@ class User implements UserInterface
      */
     private string $twitchToken;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $email;
 
     /**
      * @ORM\Column(type="json")
@@ -167,24 +163,6 @@ class User implements UserInterface
     public function setTwitchToken(string $twitchToken): User
     {
         $this->twitchToken = $twitchToken;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return User
-     */
-    public function setEmail(string $email): User
-    {
-        $this->email = $email;
         return $this;
     }
 
