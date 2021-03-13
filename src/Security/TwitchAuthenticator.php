@@ -141,7 +141,10 @@ class TwitchAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
-        return new RedirectResponse($this->provider->getAuthorizationUrl());
+        $this->provider->scopes = '';
+        return new RedirectResponse($this->provider->getAuthorizationUrl([
+            'force_verify' => 'true'
+        ]));
     }
 
     public function supportsRememberMe(): bool
