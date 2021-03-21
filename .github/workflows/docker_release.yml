@@ -31,4 +31,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/emilweth/stop-backse.at:latest
-            ghcr.io/user/stop-backse.at:${{ steps.get_version.outputs.VERSION }}
+            ghcr.io/emilweth/stop-backse.at:${{ steps.get_version.outputs.VERSION }}
